@@ -164,7 +164,7 @@ ON f.country_name = l.country_name
 ORDER BY prcnt_area ASC
 LIMIT 10
 ~~~~
-
+![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b1.png)
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
@@ -186,6 +186,8 @@ ON f.country_name = l.country_name
 ORDER BY prcnt_area ASC
 LIMIT 10
 ~~~~
+![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b2.png)
+
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
@@ -207,6 +209,7 @@ ON f.country_name = l.country_name
 ORDER BY prcnt_area DESC
 LIMIT 10
 ~~~~
+![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b3.png)
 
 c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
 
