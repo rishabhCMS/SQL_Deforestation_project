@@ -93,6 +93,8 @@ SELECT
 	 ) AS prcnt_area
 FROM land_table, forest_table
 ~~~~
+![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a1.png)
+
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
@@ -114,6 +116,8 @@ ON f.country_name = l.country_name
 ORDER BY prcnt_area ASC
 LIMIT 10
 ~~~~
+![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a2.png)
+
 
 ~~~~sql
 WITH land_table AS (SELECT *
@@ -136,6 +140,8 @@ ON f.country_name = l.country_name
 ORDER BY prcnt_area DESC
 LIMIT 10
 ~~~~
+![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a3.png)
+
 b. What was the percent forest of the entire world in 1990? Which region had the HIGHEST percent forest in 1990, and which had the LOWEST, to 2 decimal places?
 
 c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
