@@ -14,6 +14,12 @@ Making informed and well motivated decisions with respect to making the biggest 
 
 a. What was the total forest area (in sq km) of the world in 1990? Please keep in mind that you can use the country record denoted as “World" in the region table.
 
+~~~~sql
+SELECT * FROM forest_area
+WHERE country_name= 'World' AND year = '1990'
+~~~~
+
+
 b. What was the total forest area (in sq km) of the world in 2016? Please keep in mind that you can use the country record in the table is denoted as “World.”
 
 c. What was the change (in sq km) in the forest area of the world from 1990 to 2016?
