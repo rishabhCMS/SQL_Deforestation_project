@@ -101,19 +101,22 @@ WITH land_table AS (SELECT *
 		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
-SELECT 	l.country_name,
-		l.year,
-		l.total_area_sq_mi*2.29 total_area_sq_km,
-        	f.forest_area_sqkm,
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+SELECT 	r.region,
+		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
 	    	ROUND(
-			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
 			AS NUMERIC),2  
-		 ) AS prcnt_area        
+		 ) AS prcnt_area 
+       
 FROM land_table l 
 INNER JOIN forest_table f
 ON f.country_name = l.country_name
-ORDER BY prcnt_area ASC
+INNER JOIN regions r
+ON r.country_code = f.country_code
+GROUP BY 1
+ORDER BY 4 DESC
 LIMIT 10
 ~~~~
 ![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a2.png)
@@ -125,19 +128,22 @@ WITH land_table AS (SELECT *
 		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
-SELECT 	l.country_name,
-		l.year,
-		l.total_area_sq_mi*2.29 total_area_sq_km,
-        	f.forest_area_sqkm,
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+SELECT 	r.region,
+		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
 	    	ROUND(
-			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
 			AS NUMERIC),2  
-		 ) AS prcnt_area        
+		 ) AS prcnt_area 
+       
 FROM land_table l 
 INNER JOIN forest_table f
 ON f.country_name = l.country_name
-ORDER BY prcnt_area DESC
+INNER JOIN regions r
+ON r.country_code = f.country_code
+GROUP BY 1
+ORDER BY 4 ASC
 LIMIT 10
 ~~~~
 ![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a3.png)
@@ -146,44 +152,50 @@ b. What was the percent forest of the entire world in 1990? Which region had the
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '1990' and country_name = 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '1990' and country_name = 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
-SELECT 	l.country_name,
-		l.year,
-		l.total_area_sq_mi*2.29 total_area_sq_km,
-        	f.forest_area_sqkm,
+		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+SELECT 	r.region,
+		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
 	    	ROUND(
-			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
 			AS NUMERIC),2  
-		 ) AS prcnt_area        
+		 ) AS prcnt_area 
+       
 FROM land_table l 
 INNER JOIN forest_table f
 ON f.country_name = l.country_name
-ORDER BY prcnt_area ASC
+INNER JOIN regions r
+ON r.country_code = f.country_code
+GROUP BY 1
+ORDER BY 4 DESC
 LIMIT 10
 ~~~~
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b1.png)
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
-SELECT 	l.country_name,
-		l.year,
-		l.total_area_sq_mi*2.29 total_area_sq_km,
-        	f.forest_area_sqkm,
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+SELECT 	r.region,
+		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
 	    	ROUND(
-			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
 			AS NUMERIC),2  
-		 ) AS prcnt_area        
+		 ) AS prcnt_area 
+       
 FROM land_table l 
 INNER JOIN forest_table f
 ON f.country_name = l.country_name
-ORDER BY prcnt_area ASC
+INNER JOIN regions r
+ON r.country_code = f.country_code
+GROUP BY 1
+ORDER BY 4 ASC
 LIMIT 10
 ~~~~
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b2.png)
