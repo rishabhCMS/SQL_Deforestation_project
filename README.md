@@ -77,7 +77,7 @@ LIMIT 10
 
 ## Part 2 Regional Outlook
 
-a. What was the percent forest of the entire world in 2016? Which region had the HIGHEST percent forest in 2016, and which had the LOWEST, to 2 decimal places?
+**a. What was the percent forest of the entire world in 2016? Which region had the HIGHEST percent forest in 2016, and which had the LOWEST, to 2 decimal places?**
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
@@ -157,7 +157,7 @@ LIMIT 10
 ~~~~
 ![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a3.png)
 
-b. What was the percent forest of the entire world in 1990? Which region had the HIGHEST percent forest in 1990, and which had the LOWEST, to 2 decimal places?
+**b. What was the percent forest of the entire world in 1990? Which region had the HIGHEST percent forest in 1990, and which had the LOWEST, to 2 decimal places?**
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
@@ -235,7 +235,7 @@ LIMIT 10
 ~~~~
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b3.png)
 
-c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
+**c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?**
 
 ~~~~sql
 WITH t1 AS(WITH land_table AS (SELECT *
@@ -290,4 +290,18 @@ ORDER BY 1 DESC
 
 ~~~~
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2c.png)
+
+## Part 3 Country-Level Detail
+
+**a. Which 5 countries saw the largest amount decrease in forest area from 1990 to 2016? What was the difference in forest area for each?**
+
+
+**b. Which 5 countries saw the largest percent decrease in forest area from 1990 to 2016? What was the percent change to 2 decimal places for each?**
+
+**c. If countries were grouped by percent forestation in quartiles, which group had the most countries in it in 2016?**
+
+**d. List all of the countries that were in the 4th quartile (percent forest > 75%) in 2016.**
+
+**e. How many countries had a percent forestation higher than the United States in 2016?**
+
 
