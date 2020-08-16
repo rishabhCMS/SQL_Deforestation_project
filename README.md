@@ -10,7 +10,7 @@
 
 Making informed and well motivated decisions with respect to making the biggest impact given the few resources available
 
-## Part 1: Questions to be addressed
+## Part 1: Global Situation
 
 a. What was the total forest area (in sq km) of the world in 1990? Please keep in mind that you can use the country record denoted as “World" in the region table.
 
@@ -74,3 +74,11 @@ ORDER BY diff_sq_km
 LIMIT 10
 ~~~~
 ![Q5 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q5.png)
+
+# Part 2 Regional Outlook
+
+a. What was the percent forest of the entire world in 2016? Which region had the HIGHEST percent forest in 2016, and which had the LOWEST, to 2 decimal places?
+
+b. What was the percent forest of the entire world in 1990? Which region had the HIGHEST percent forest in 1990, and which had the LOWEST, to 2 decimal places?
+
+c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
