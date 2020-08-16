@@ -81,17 +81,26 @@ a. What was the percent forest of the entire world in 2016? Which region had the
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '2016' and country_name = 'World'),
+		    WHERE year = '2016' and country_name = 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name = 'World')
-      
-SELECT 
-    ROUND(
-	cast((forest_table.forest_area_sqkm/(land_table.total_area_sq_mi*2.59))*100
-		AS NUMERIC),2  
-	 ) AS prcnt_area
-FROM land_table, forest_table
+		       WHERE year = '2016' and country_name = 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+SELECT 	r.region,
+		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
+	    	ROUND(
+			cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
+			AS NUMERIC),2  
+		 ) AS prcnt_area 
+       
+FROM land_table l 
+INNER JOIN forest_table f
+ON f.country_name = l.country_name
+INNER JOIN regions r
+ON r.country_code = f.country_code
+GROUP BY 1
+ORDER BY 4 DESC
+LIMIT 10
 ~~~~
 ![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a1.png)
 
