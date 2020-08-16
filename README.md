@@ -236,5 +236,5 @@ LIMIT 10
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2b3.png)
 
 c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
-
+![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2c.png)
 
