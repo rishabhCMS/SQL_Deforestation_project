@@ -18,7 +18,7 @@ a. What was the total forest area (in sq km) of the world in 1990? Please keep i
 SELECT * FROM forest_area
 WHERE country_name= 'World' AND year = '1990'
 ~~~~
-
+![Q1 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q1.png)
 
 b. What was the total forest area (in sq km) of the world in 2016? Please keep in mind that you can use the country record in the table is denoted as “World.”
 
@@ -26,6 +26,8 @@ b. What was the total forest area (in sq km) of the world in 2016? Please keep i
 SELECT * FROM forest_area
 WHERE country_name= 'World' AND year = '2016'
 ~~~~
+![Q2 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q2.png)
+
 
 c. What was the change (in sq km) in the forest area of the world from 1990 to 2016?
 
@@ -39,6 +41,7 @@ WITH t1990 AS (SELECT forest_area_sqkm
 SELECT (t1990.forest_area_sqkm - t2016.forest_area_sqkm) change
 FROM t1990, t2016
 ~~~~
+![Q3 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q3.png)
 
 d. What was the percent change in forest area of the world between 1990 and 2016?
 
@@ -54,8 +57,9 @@ SELECT t1990.forest_area_sqkm forest_area_sqkm_1990,
 	(t1990.forest_area_sqkm - t2016.forest_area_sqkm) change,
 	((t1990.forest_area_sqkm - t2016.forest_area_sqkm)/t1990.forest_area_sqkm)*100 as prcnt_change
 FROM t1990, t2016
-
 ~~~~
+![Q4 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q4.png)
+
 
 e. If you compare the amount of forest area lost between 1990 and 2016, to which country's total area in 2016 is it closest to?
 
@@ -69,3 +73,4 @@ FROM Country_2016
 ORDER BY diff_sq_km
 LIMIT 10
 ~~~~
+![Q5 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q5.png)
