@@ -75,7 +75,7 @@ LIMIT 10
 ~~~~
 ![Q5 expected result](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Q5.png)
 
-# Part 2 Regional Outlook
+## Part 2 Regional Outlook
 
 a. What was the percent forest of the entire world in 2016? Which region had the HIGHEST percent forest in 2016, and which had the LOWEST, to 2 decimal places?
 
