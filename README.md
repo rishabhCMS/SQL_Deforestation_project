@@ -177,10 +177,10 @@ LIMIT 10
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
 SELECT 	r.region,
 		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
         SUM(f.forest_area_sqkm) total_forest_area_sqkm,
@@ -203,10 +203,10 @@ LIMIT 10
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
 SELECT 	r.region,
 		SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
         SUM(f.forest_area_sqkm) total_forest_area_sqkm,
