@@ -143,6 +143,70 @@ LIMIT 10
 ![Part2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2a3.png)
 
 b. What was the percent forest of the entire world in 1990? Which region had the HIGHEST percent forest in 1990, and which had the LOWEST, to 2 decimal places?
+~~~~sql
+WITH land_table AS (SELECT *
+		    FROM land_area
+		    WHERE year = '1990' and country_name = 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+      forest_table AS (SELECT *
+		       FROM forest_area
+		       WHERE year = '1990' and country_name = 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
+SELECT 	l.country_name,
+		l.year,
+		l.total_area_sq_mi*2.29 total_area_sq_km,
+        	f.forest_area_sqkm,
+	    	ROUND(
+			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			AS NUMERIC),2  
+		 ) AS prcnt_area        
+FROM land_table l 
+INNER JOIN forest_table f
+ON f.country_name = l.country_name
+ORDER BY prcnt_area ASC
+LIMIT 10
+~~~~
+
+~~~~sql
+WITH land_table AS (SELECT *
+		    FROM land_area
+		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+      forest_table AS (SELECT *
+		       FROM forest_area
+		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
+SELECT 	l.country_name,
+		l.year,
+		l.total_area_sq_mi*2.29 total_area_sq_km,
+        	f.forest_area_sqkm,
+	    	ROUND(
+			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			AS NUMERIC),2  
+		 ) AS prcnt_area        
+FROM land_table l 
+INNER JOIN forest_table f
+ON f.country_name = l.country_name
+ORDER BY prcnt_area ASC
+LIMIT 10
+~~~~
+~~~~sql
+WITH land_table AS (SELECT *
+		    FROM land_area
+		    WHERE year = '1990' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+      forest_table AS (SELECT *
+		       FROM forest_area
+		       WHERE year = '1990' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT 				NULL)
+SELECT 	l.country_name,
+		l.year,
+		l.total_area_sq_mi*2.29 total_area_sq_km,
+        	f.forest_area_sqkm,
+	    	ROUND(
+			cast((f.forest_area_sqkm/(l.total_area_sq_mi*2.59))*100
+			AS NUMERIC),2  
+		 ) AS prcnt_area        
+FROM land_table l 
+INNER JOIN forest_table f
+ON f.country_name = l.country_name
+ORDER BY prcnt_area DESC
+LIMIT 10
+~~~~
 
 c. Based on the table you created, which regions of the world DECREASED in forest area from 1990 to 2016?
 
