@@ -347,7 +347,85 @@ LIMIT 5
 
 **c. If countries were grouped by percent forestation in quartiles, which group had the most countries in it in 2016?**
 
+~~~~sql
+WITH land_table AS (SELECT *
+		    FROM land_area
+		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+      forest_table AS (SELECT *
+		       FROM forest_area
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+	
+SELECT t2.quartile, COUNT(*)
+
+FROM(SELECT *, 
+		CASE 
+     		WHEN t1.prcnt_area > 75 THEN 4
+     		WHEN t1.prcnt_area > 50 AND t1.prcnt_area <= 75 THEN 3
+     		WHEN t1.prcnt_area > 25 AND t1.prcnt_area <= 50 THEN 2
+     		ELSE 1
+     	END AS quartile
+
+	FROM(SELECT 	f.country_name,
+			SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+	        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
+		    	ROUND(
+				cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
+				AS NUMERIC),2  
+			 ) AS prcnt_area 
+       
+			FROM land_table l 
+			INNER JOIN forest_table f
+			ON f.country_name = l.country_name
+			INNER JOIN regions r
+			ON r.country_code = f.country_code
+			GROUP BY 1
+			ORDER BY 4 DESC
+			) AS t1
+		) AS t2
+GROUP BY 1
+ORDER BY 2 DESC
+~~~~
+
 **d. List all of the countries that were in the 4th quartile (percent forest > 75%) in 2016.**
+
+~~~~sql
+WITH land_table AS (SELECT *
+		    FROM land_area
+		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+      forest_table AS (SELECT *
+		       FROM forest_area
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+	
+SELECT t2.country_name, t2.quartile
+
+FROM(SELECT *, 
+		CASE 
+     		WHEN t1.prcnt_area > 75 THEN 4
+     		WHEN t1.prcnt_area > 50 AND t1.prcnt_area <= 75 THEN 3
+     		WHEN t1.prcnt_area > 25 AND t1.prcnt_area <= 50 THEN 2
+     		ELSE 1
+     	END AS quartile
+
+	FROM(SELECT 	f.country_name,
+			SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
+	        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
+		    	ROUND(
+				cast((SUM(f.forest_area_sqkm)/(SUM(l.total_area_sq_mi*2.59)))*100
+				AS NUMERIC),2  
+			 ) AS prcnt_area 
+       
+			FROM land_table l 
+			INNER JOIN forest_table f
+			ON f.country_name = l.country_name
+			INNER JOIN regions r
+			ON r.country_code = f.country_code
+			GROUP BY 1
+			ORDER BY 4 DESC
+			) AS t1
+		) AS t2
+WHERE t2.quartile = 4
+~~~~
+
 
 **e. How many countries had a percent forestation higher than the United States in 2016?**
 
