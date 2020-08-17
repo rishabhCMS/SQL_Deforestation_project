@@ -385,6 +385,7 @@ FROM(SELECT *,
 GROUP BY 1
 ORDER BY 2 DESC
 ~~~~
+![Part 3 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part3c.png)
 
 **d. List all of the countries that were in the 4th quartile (percent forest > 75%) in 2016.**
 
@@ -426,7 +427,7 @@ FROM(SELECT *,
 WHERE t2.quartile = 4
 GROUP BY 1,2,3,4,5
 ~~~~
-
+![Part 3 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part3d.png)
 
 **e. How many countries had a percent forestation higher than the United States in 2016?**
 ~~~~sql
@@ -469,7 +470,5 @@ WHERE t2.prcnt_area > (
                           FROM    t1
                           WHERE   country_name = 'United States'
                           )
-
-
 ~~~~
-
+![Part 3 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part3e.png)
