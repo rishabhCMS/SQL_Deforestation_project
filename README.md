@@ -412,7 +412,7 @@ WITH land_table AS (SELECT *
 			ORDER BY 4 DESC
 			)
 	
-SELECT COUNT(*)
+SELECT *, COUNT(*)
 
 FROM(SELECT *, 
 		CASE 
@@ -424,6 +424,7 @@ FROM(SELECT *,
 
 	FROM t1) AS t2
 WHERE t2.quartile = 4
+GROUP BY 1,2,3,4,5
 ~~~~
 
 
