@@ -394,19 +394,8 @@ WITH land_table AS (SELECT *
 		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
-	
-SELECT t2.country_name, t2.quartile
-
-FROM(SELECT *, 
-		CASE 
-     		WHEN t1.prcnt_area > 75 THEN 4
-     		WHEN t1.prcnt_area > 50 AND t1.prcnt_area <= 75 THEN 3
-     		WHEN t1.prcnt_area > 25 AND t1.prcnt_area <= 50 THEN 2
-     		ELSE 1
-     	END AS quartile
-
-	FROM(SELECT 	f.country_name,
+		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL),
+      t1 AS (SELECT 	f.country_name,
 			SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
 	        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
 		    	ROUND(
@@ -421,8 +410,19 @@ FROM(SELECT *,
 			ON r.country_code = f.country_code
 			GROUP BY 1
 			ORDER BY 4 DESC
-			) AS t1
-		) AS t2
+			)
+	
+SELECT COUNT(*)
+
+FROM(SELECT *, 
+		CASE 
+     		WHEN t1.prcnt_area > 75 THEN 4
+     		WHEN t1.prcnt_area > 50 AND t1.prcnt_area <= 75 THEN 3
+     		WHEN t1.prcnt_area > 25 AND t1.prcnt_area <= 50 THEN 2
+     		ELSE 1
+     	END AS quartile
+
+	FROM t1) AS t2
 WHERE t2.quartile = 4
 ~~~~
 
