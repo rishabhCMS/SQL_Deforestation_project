@@ -296,8 +296,54 @@ ORDER BY 1 DESC
 
 **a. Which 5 countries saw the largest amount decrease in forest area from 1990 to 2016? What was the difference in forest area for each?**
 
+~~~~sql
+WITH t1990 AS (SELECT *
+               FROM forest_area
+               WHERE country_name != 'World' AND year = '1990' AND forest_area_sqkm IS NOT NULL),
+     
+     t2016 AS (SELECT *
+               FROM forest_area
+               WHERE country_name != 'World' AND year = '2016' AND forest_area_sqkm IS NOT NULL)
+
+SELECT  t1990.country_name,
+		t1990.forest_area_sqkm forest_area_sqkm_1990,
+		t2016.forest_area_sqkm forest_area_sqkm_2016,
+		(t1990.forest_area_sqkm - t2016.forest_area_sqkm) change,
+		((t1990.forest_area_sqkm - t2016.forest_area_sqkm)/t1990.forest_area_sqkm)*100 as prcnt_change
+FROM t1990
+JOIN t2016
+ON t1990.country_name = t2016.country_name
+ORDER BY 4 DESC
+LIMIT 5
+~~~~
+![Part 3 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part3a.png)
 
 **b. Which 5 countries saw the largest percent decrease in forest area from 1990 to 2016? What was the percent change to 2 decimal places for each?**
+
+~~~~sql
+WITH t1990 AS (SELECT *
+               FROM forest_area
+               WHERE country_name != 'World' AND year = '1990' AND forest_area_sqkm IS NOT NULL),
+     
+     t2016 AS (SELECT *
+               FROM forest_area
+               WHERE country_name != 'World' AND year = '2016' AND forest_area_sqkm IS NOT NULL)
+
+SELECT  t1990.country_name,
+		t1990.forest_area_sqkm forest_area_sqkm_1990,
+		t2016.forest_area_sqkm forest_area_sqkm_2016,
+		(t1990.forest_area_sqkm - t2016.forest_area_sqkm) change,
+		ROUND(
+			CAST(((t1990.forest_area_sqkm - t2016.forest_area_sqkm)/t1990.forest_area_sqkm)*100 AS NUMERIC),2
+			) as prcnt_change
+FROM t1990
+JOIN t2016
+ON t1990.country_name = t2016.country_name
+ORDER BY 5 DESC
+LIMIT 5
+~~~~
+![Part 3 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part3b.png)
+
 
 **c. If countries were grouped by percent forestation in quartiles, which group had the most countries in it in 2016?**
 
