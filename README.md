@@ -17,7 +17,7 @@ SELECT f.country_code,
 		r.region,
 		r.income_group,
 		f.year,
-		f.forestare_sqkm,
+		f.forest_area_sqkm,
 		l.total_area_sq_mi*2.59 AS land_area_sqkm,
 		f.forest_area_sqkm/(l.total_area_sq_mi*2.59)*100 AS prcnt_area
 		FROM forest_area f
