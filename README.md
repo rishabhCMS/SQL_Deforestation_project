@@ -328,7 +328,9 @@ SELECT  t1990.country_name,
 		t1990.forest_area_sqkm forest_area_sqkm_1990,
 		t2016.forest_area_sqkm forest_area_sqkm_2016,
 		(t1990.forest_area_sqkm - t2016.forest_area_sqkm) change,
-		((t1990.forest_area_sqkm - t2016.forest_area_sqkm)/t1990.forest_area_sqkm)*100 as prcnt_change
+		ROUND(
+			CAST(((t1990.forest_area_sqkm - t2016.forest_area_sqkm)/t1990.forest_area_sqkm)*100 AS NUMERIC),2
+			) as prcnt_change
 FROM t1990
 JOIN t2016
 ON t1990.country_name = t2016.country_name
