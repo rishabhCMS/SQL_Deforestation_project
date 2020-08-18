@@ -9,6 +9,25 @@
 # AIM
 
 Making informed and well motivated decisions with respect to making the biggest impact given the few resources available
+## Create View
+~~~~sql
+CREATE VIEW forestation AS
+SELECT f.country_code,
+		f.country_name,
+		r.region,
+		r.income_group,
+		f.year,
+		f.forestare_sqkm,
+		l.total_area_sq_mi*2.59 AS land_area_sqkm,
+		f.forest_area_sqkm/(l.total_area_sq_mi*2.59)*100 AS prcnt_area
+		FROM forest_area f
+		FULL JOIN land_area l
+		ON f.country_code = l.country_code
+		AND f.year = l.year
+		JOIN regions r
+		ON r.country_code = f.country_code
+		Order by 1,5
+~~~~
 
 ## Part 1: Global Situation
 
