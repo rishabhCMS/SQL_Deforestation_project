@@ -282,10 +282,10 @@ WITH t1 AS(WITH land_table AS (SELECT *
            
      t2 AS (WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '2016' and country_name != 'World' AND land_area.total_area_sq_mi IS NOT NULL),
+		    WHERE year = '2016'  AND land_area.total_area_sq_mi IS NOT NULL),
       		forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World' AND forest_area.forest_area_sqkm IS NOT NULL)
+		       WHERE year = '2016'  AND forest_area.forest_area_sqkm IS NOT NULL)
 			SELECT 	r.region,
 					SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
 				SUM(f.forest_area_sqkm) total_forest_area_sqkm,
@@ -302,12 +302,12 @@ WITH t1 AS(WITH land_table AS (SELECT *
 			GROUP BY 1
 			ORDER BY 4 DESC)
             
-SELECT t1.prcnt_area - t2.prcnt_area diff,t1.region
+SELECT t1.region, t1.prcnt_area prcnt_area_1990, t2.prcnt_area prcnt_area_2016,
+		t1.prcnt_area - t2.prcnt_area diff
 FROM t1
 JOIN t2
 ON t1.region = t2.region
 ORDER BY 1 DESC
-
 ~~~~
 ![Part 2 Image](https://github.com/rishabhCMS/SQL_Deforestation_project/blob/master/images/Part2c.png)
 
