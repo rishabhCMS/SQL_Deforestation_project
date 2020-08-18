@@ -369,10 +369,10 @@ LIMIT 5
 ~~~~sql
 WITH land_table AS (SELECT *
 		    FROM land_area
-		    WHERE year = '2016' and country_name != 'World'),
+		    WHERE year = '2016' and country_name != 'World' AND total_area_sq_mi IS NOT NULL),
       forest_table AS (SELECT *
 		       FROM forest_area
-		       WHERE year = '2016' and country_name != 'World'),
+		       WHERE year = '2016' and country_name != 'World' AND forest_area_sqkm IS NOT NULL),
       t1 AS (SELECT 	f.country_name,
 			SUM(l.total_area_sq_mi*2.59) total_area_sqkm,
 	        SUM(f.forest_area_sqkm) total_forest_area_sqkm,
