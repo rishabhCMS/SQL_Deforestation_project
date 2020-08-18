@@ -318,11 +318,11 @@ ORDER BY 1 DESC
 ~~~~sql
 WITH t1990 AS (SELECT *
                FROM forest_area
-               WHERE country_name != 'World' AND year = '1990'),
+               WHERE country_name != 'World' AND year = '1990' AND forest_area_sqkm IS NOT NULL),
      
      t2016 AS (SELECT *
                FROM forest_area
-               WHERE country_name != 'World' AND year = '2016')
+               WHERE country_name != 'World' AND year = '2016' AND forest_area_sqkm IS NOT NULL)
 
 SELECT  t1990.country_name,
 		t1990.forest_area_sqkm forest_area_sqkm_1990,
@@ -342,11 +342,11 @@ LIMIT 5
 ~~~~sql
 WITH t1990 AS (SELECT *
                FROM forest_area
-               WHERE country_name != 'World' AND year = '1990' ),
+               WHERE country_name != 'World' AND year = '1990' AND forest_area_sqkm IS NOT NULL),
      
      t2016 AS (SELECT *
                FROM forest_area
-               WHERE country_name != 'World' AND year = '2016')
+               WHERE country_name != 'World' AND year = '2016' AND forest_area_sqkm IS NOT NULL)
 
 SELECT  t1990.country_name,
 		t1990.forest_area_sqkm forest_area_sqkm_1990,
